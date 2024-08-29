@@ -29,6 +29,7 @@ public class ContactMatcher {
         return new ScoreResultDto(c1.getContactId(), c2.getContactId(), score, category);
     }
 
+    // Method to compare contact list "contactDtos" one by one.
     public Map<String, ScoreResultDto> findPotentialMatches(List<ContactDto> contactDtos, Map<String, Double> weights) {
         Map<String, ScoreResultDto> matches = new HashMap<>();
 
@@ -49,6 +50,9 @@ public class ContactMatcher {
         return matches;
     }
 
+    // Method for comparing two contacts field by field, the degree of similarity is calculated by adding the score of
+    // each field and then dividing by the total number of fields to obtain the average.
+    // The expected result is a number in the range [0..1] where 1 means the highest degree of similarity.
     public double calculateMatchScore(ContactDto c1, ContactDto c2, Map<String, Double> weights) {
         double weightFistName = weights.getOrDefault("fistName", 1.0);
         double weightLastName = weights.getOrDefault("lastName", 1.0);
@@ -89,6 +93,7 @@ public class ContactMatcher {
 
         double score = (firstNameScore + lastNameScore + emailScore + addressScore + zipCodeScore) / totalWeight;
 
+        // For testing purposes only, this code will be removed.
         boolean log = false;
         if (log) {
             System.out.println(c1.getContactId() + "-" + c2.getContactId());
@@ -103,13 +108,14 @@ public class ContactMatcher {
         return score;
     }
 
+    // Method to obtain the lower limit for considering two contacts to be similar.
     public double getLowThreshold() {
         if (similarityStrategy instanceof JaroWinklerStrategy) {
             return JaroWinklerStrategy.LOW_THRESHOLD;
         } else if (similarityStrategy instanceof LevenshteinStrategy) {
             return LevenshteinStrategy.LOW_THRESHOLD;
         } else {
-            throw new UnsupportedOperationException("Unknown Strategy");
+            throw new UnsupportedOperationException("Unknown threshold.");
         }
     }
 }

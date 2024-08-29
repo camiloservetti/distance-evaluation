@@ -2,14 +2,11 @@ package com.run;
 
 import com.dto.ContactDto;
 import com.dto.ScoreResultDto;
-import com.strategy.LevenshteinStrategy;
 import com.util.CSVReaderUtil;
 import com.service.ContactMatcher;
 import com.strategy.ISimilarityStrategy;
 import com.strategy.JaroWinklerStrategy;
 import com.util.CSVWriteUtil;
-
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;

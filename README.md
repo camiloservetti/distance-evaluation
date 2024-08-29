@@ -12,3 +12,9 @@ https://srinivas-kulkarni.medium.com/jaro-winkler-vs-levenshtein-distance-2eab21
 - Supports multiple similarity algorithms (e.g., Jaro-Winkler, Levenshtein).
 - Configurable thresholds to categorize similarity scores as LOW, MEDIUM, or HIGH.
 - Reads contact data from a CSV file.
+
+
+## RUN
+
+The program's input and output CSV files are located in src/main/resources. 
+To execute the code you must run the Main class located in the src/main/java/com/run directory.
